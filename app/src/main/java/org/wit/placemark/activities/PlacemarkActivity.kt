@@ -1,29 +1,45 @@
 package org.wit.placemark.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_placemark.*
+import kotlinx.android.synthetic.main.activity_placemark_fragment.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import org.wit.placemark.R
-import org.wit.placemark.helpers.readImage
-import org.wit.placemark.helpers.readImageFromPath
-import org.wit.placemark.helpers.showImagePicker
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.Location
 import org.wit.placemark.models.PlacemarkModel
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.google.android.material.tabs.TabLayoutMediator
+import org.wit.placemark.helpers.readImage
+import org.wit.placemark.helpers.readImageFromPath
+import org.wit.placemark.helpers.showImagePicker
 
 class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
   var placemark = PlacemarkModel()
   lateinit var app: MainApp
-  val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
+  val IMAGE_REQUEST = 4
+
+  private lateinit var imageNamesArray: Array<String>
+  private lateinit var imagePhotosArray: Array<String>
+
+  //TODO:4 Define page change callback here
+  private var imagePageChangeCallback = object : OnPageChangeCallback() {
+    override fun onPageSelected(position: Int) {
+      Toast.makeText(this@PlacemarkActivity,
+        "Selected position: $position",
+        Toast.LENGTH_SHORT).show()
+    }
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -34,6 +50,22 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
     app = application as MainApp
 
+    imageNamesArray = resources.getStringArray(R.array.image_names)
+
+    //TODO:3 Wire DoppelgangerAdapter with ViewPager2 here
+    val imageAdapter = ImageAdapter(this, imageNamesArray.size)
+    imageViewPager.adapter = imageAdapter
+
+    //TODO:5 Register page change callback here
+    imageViewPager.registerOnPageChangeCallback(imagePageChangeCallback)
+
+
+    //TODO:10 Connect TabLayout and ViewPager2 here
+    TabLayoutMediator(tabLayout, imageViewPager) { tab, position ->
+      //To get the first name of doppelganger celebrities
+      tab.text = imageNamesArray[position].substringBefore(' ')
+    }.attach()
+
     var edit = false
 
     if (intent.hasExtra("placemark_edit")) {
@@ -41,10 +73,13 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
       placemark = intent.extras?.getParcelable<PlacemarkModel>("placemark_edit")!!
       placemarkTitle.setText(placemark.title)
       description.setText(placemark.description)
+
+      /**
       placemarkImage.setImageBitmap(readImageFromPath(this, placemark.image))
       if (placemark.image != null) {
         chooseImage.setText(R.string.change_placemark_image)
       }
+*/
       btnAdd.setText(R.string.save_placemark)
     }
 
@@ -68,6 +103,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
     chooseImage.setOnClickListener {
       showImagePicker(this, IMAGE_REQUEST);
     }
+
 
     placemarkLocation.setOnClickListener {
       val location = Location(52.245696, -7.139102, 15f)
@@ -98,6 +134,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
     return super.onOptionsItemSelected(item)
   }
 
+
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     when (requestCode) {
@@ -117,6 +154,12 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
         }
       }
     }
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    //TODO:6 Unregister page change callback here
+    imageViewPager.unregisterOnPageChangeCallback(imagePageChangeCallback)
   }
 }
 

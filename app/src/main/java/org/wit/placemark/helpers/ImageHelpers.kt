@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import org.wit.placemark.R
 import java.io.IOException
 
+
 fun showImagePicker(parent: Activity, id: Int) {
   val intent = Intent()
   intent.type = "image/*"
@@ -31,9 +32,9 @@ fun readImage(activity: Activity, resultCode: Int, data: Intent?): Bitmap? {
   return bitmap
 }
 
-fun readImageFromPath(context: Context, path : String) : Bitmap? {
+fun readImageFromPath(context: Context, path: String) : Bitmap? {
   var bitmap : Bitmap? = null
-  val uri = Uri.parse(path)
+  val uri = Uri.parse(path.toString())
   if (uri != null) {
     try {
       val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")

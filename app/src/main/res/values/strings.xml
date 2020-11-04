@@ -17,13 +17,17 @@
   <string name="placemark_image_placeholder">Placemark Image</string>
   <string name="placemark_title_placeholder">Placemark Title</string>
   <string name="placemark_description_placeholder">Description</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+  <string name="image_path">content://com.android.providers.downloads.documents/document/%d.jpg</string>
+  <string name="image_loading_error">Problem in loading image</string>
+
+  <string-array name="image_names">
+    <item>Image1</item>
+    <item>Image2</item>
+    <item>Image3</item>
+    <item>Image4</item>
+  </string-array>
 
 </resources>
