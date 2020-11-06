@@ -22,7 +22,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activities.LandingActivity">
+        </activity>
 
+        <activity
+            android:name=".activities.PlacemarkListActivity">
+        </activity>
 
         <activity
             android:name=".activities.PlacemarkMapsActivity"
@@ -30,14 +36,16 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <activity android:name=".activities.PlacemarkActivity" />
+        <activity
+            android:name=".activities.PlacemarkActivity">
+        </activity>
 
         <activity
-            android:name=".activities.PlacemarkListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".activities.LoginActivity">
+        </activity>
+
+        <activity
+            android:name=".activities.SignupActivity">
         </activity>
 
         <meta-data

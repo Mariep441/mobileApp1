@@ -18,6 +18,7 @@ import org.wit.placemark.models.Location
 import org.wit.placemark.models.PlacemarkModel
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.card_placemark.view.*
 import org.wit.placemark.helpers.readImage
 import org.wit.placemark.helpers.readImageFromPath
 import org.wit.placemark.helpers.showImagePicker
@@ -26,8 +27,8 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
   var placemark = PlacemarkModel()
   lateinit var app: MainApp
-  val LOCATION_REQUEST = 2
   val IMAGE_REQUEST = 4
+  val LOCATION_REQUEST = 2
 
   private lateinit var imageNamesArray: Array<String>
   private lateinit var imagePhotosArray: Array<String>
@@ -51,6 +52,8 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
     app = application as MainApp
 
     imageNamesArray = resources.getStringArray(R.array.image_names)
+    imagePhotosArray = resources.getStringArray(R.array.image_names)
+
 
     //TODO:3 Wire DoppelgangerAdapter with ViewPager2 here
     val imageAdapter = ImageAdapter(this, imageNamesArray.size)
@@ -66,6 +69,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
       tab.text = imageNamesArray[position].substringBefore(' ')
     }.attach()
 
+
     var edit = false
 
     if (intent.hasExtra("placemark_edit")) {
@@ -73,15 +77,13 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
       placemark = intent.extras?.getParcelable<PlacemarkModel>("placemark_edit")!!
       placemarkTitle.setText(placemark.title)
       description.setText(placemark.description)
-
-      /**
-      placemarkImage.setImageBitmap(readImageFromPath(this, placemark.image))
-      if (placemark.image != null) {
-        chooseImage.setText(R.string.change_placemark_image)
-      }
+/**
+      placemarkImage1.setImageBitmap(readImageFromPath(this, placemark.image1))
+      if (placemark.image1 != null) { chooseImage.setText(R.string.change_placemark_image) }
 */
       btnAdd.setText(R.string.save_placemark)
     }
+
 
     btnAdd.setOnClickListener() {
       placemark.title = placemarkTitle.text.toString()
@@ -134,13 +136,12 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
     return super.onOptionsItemSelected(item)
   }
 
-
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     when (requestCode) {
       IMAGE_REQUEST -> {
         if (data != null) {
-          placemark.image = data.getData().toString()
+          placemark.image1 = data.getData().toString()
           placemarkImage.setImageBitmap(readImage(this, resultCode, data))
           chooseImage.setText(R.string.change_placemark_image)
         }

@@ -12,6 +12,7 @@ internal fun getId(): Long {
 class PlacemarkMemStore : PlacemarkStore, AnkoLogger {
 
   val placemarks = ArrayList<PlacemarkModel>()
+  val users = ArrayList<UserModel>()
 
   override fun findAll(): List<PlacemarkModel> {
     return placemarks
@@ -33,7 +34,8 @@ class PlacemarkMemStore : PlacemarkStore, AnkoLogger {
     if (foundPlacemark != null) {
       foundPlacemark.title = placemark.title
       foundPlacemark.description = placemark.description
-      foundPlacemark.image = placemark.image
+      foundPlacemark.image1 = placemark.image1
+      foundPlacemark.image2 = placemark.image2
       foundPlacemark.visited = placemark.visited
       foundPlacemark.lat = placemark.lat
       foundPlacemark.lng = placemark.lng
@@ -49,4 +51,6 @@ class PlacemarkMemStore : PlacemarkStore, AnkoLogger {
   fun logAll() {
     placemarks.forEach { info("${it}") }
   }
+
+
 }

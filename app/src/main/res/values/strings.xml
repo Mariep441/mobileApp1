@@ -6,8 +6,12 @@
   <string name="menu_addPlacemark">Add</string>
   <string name="menu_cancelPlacemark">Cancel</string>
   <string name="menu_deletePlacemark">Delete</string>
+  <string name="menu_login">Login</string>
+  <string name="menu_signup">SignUp</string>
   <string name="enter_placemark_title"> Please enter a Hillfort Name </string>
+  <string name="enter_user_password"> Please enter a Password </string>
   <string name="save_placemark"> Save Hillfort </string>
+  <string name="save_user"> Save User </string>
   <string name="button_addImage"> Add Image </string>
   <string name="select_placemark_image">Select image</string>
   <string name="change_placemark_image">Change image</string>
@@ -17,6 +21,7 @@
   <string name="placemark_image_placeholder">Placemark Image</string>
   <string name="placemark_title_placeholder">Placemark Title</string>
   <string name="placemark_description_placeholder">Description</string>
+  <string name="edit_user_details">Edit</string>
 
 
 

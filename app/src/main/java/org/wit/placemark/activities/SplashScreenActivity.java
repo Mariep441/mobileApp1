@@ -11,7 +11,7 @@ public class SplashScreenActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(SplashScreenActivity.this, PlacemarkListActivity.class));
+        startActivity(new Intent(SplashScreenActivity.this, LandingActivity.class));
         finish();
     }
 }

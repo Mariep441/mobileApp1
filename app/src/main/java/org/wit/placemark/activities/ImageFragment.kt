@@ -47,15 +47,15 @@ class ImageFragment : Fragment() {
     val position = requireArguments().getInt(ARG_POSITION)
     val imageFilePath = getString(R.string.image_path, position)
     val imageNamesArray = requireContext().resources.getStringArray(R.array.image_names)
-
     setImageFromAssetsFile(requireContext(), imageFilePath)
-    doppelgangerNameTv.text = imageNamesArray[position]
+    imageName.text = imageNamesArray[position]
+
   }
 
 
-  private fun setImageFromAssetsFile(context: Context, filePath: String) {
+  private fun setImageFromAssetsFile(context: Context, imageFilePath: String) {
     var bitmap: Bitmap? = null
-    val uri = Uri.parse(filePath.toString())
+    val uri = Uri.parse(imageFilePath.toString())
     if (uri != null) {
       try {
         val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")
