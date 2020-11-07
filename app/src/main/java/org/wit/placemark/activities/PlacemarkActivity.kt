@@ -29,13 +29,13 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
 
   var placemark = PlacemarkModel()
   lateinit var app: MainApp
-  val IMAGE_REQUEST = 4
+  val IMAGE_REQUEST = 1
   val LOCATION_REQUEST = 2
 
   private lateinit var imageNamesArray: Array<String>
   private lateinit var imagePhotosArray: Array<String>
 
-  //TODO:4 Define page change callback here
+  //Define page change callback here
   private var imagePageChangeCallback = object : OnPageChangeCallback() {
     override fun onPageSelected(position: Int) {
       Toast.makeText(this@PlacemarkActivity, "Selected position: $position", Toast.LENGTH_SHORT).show()
@@ -56,15 +56,15 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
     imagePhotosArray = resources.getStringArray(R.array.image_names)
 
 
-    //TODO:3 Wire DoppelgangerAdapter with ViewPager2 here
+    //Wire ImageAdapter with ViewPager2 here
     val imageAdapter = ImageAdapter(this, imageNamesArray.size)
     imageViewPager.adapter = imageAdapter
 
-    //TODO:5 Register page change callback here
+    //Register page change callback here
     imageViewPager.registerOnPageChangeCallback(imagePageChangeCallback)
 
 
-    //TODO:10 Connect TabLayout and ViewPager2 here
+    //Connect TabLayout and ViewPager2 here
     TabLayoutMediator(tabLayout, imageViewPager) { tab, position ->
       //To get the first name of doppelganger celebrities
       tab.text = imageNamesArray[position].substringBefore(' ')
@@ -119,6 +119,8 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
     }
   }
 
+  //Menu
+
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     menuInflater.inflate(R.menu.menu_placemark, menu)
     return super.onCreateOptionsMenu(menu)
@@ -136,6 +138,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
     }
     return super.onOptionsItemSelected(item)
   }
+
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)

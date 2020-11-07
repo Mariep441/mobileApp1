@@ -6,7 +6,6 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.*
 import org.wit.placemark.R
-import android.util.Patterns
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
