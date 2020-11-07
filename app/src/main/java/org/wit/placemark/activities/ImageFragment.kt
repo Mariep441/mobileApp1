@@ -19,8 +19,6 @@ import org.wit.placemark.helpers.readImage
 import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.helpers.readImageFromPath
 
-
-
 class ImageFragment : Fragment() {
 
   companion object {

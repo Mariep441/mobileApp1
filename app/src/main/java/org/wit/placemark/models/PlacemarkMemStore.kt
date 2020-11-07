@@ -1,5 +1,6 @@
 package org.wit.placemark.models
 
+import kotlinx.android.synthetic.main.activity_placemark.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
@@ -36,7 +37,7 @@ class PlacemarkMemStore : PlacemarkStore, AnkoLogger {
       foundPlacemark.description = placemark.description
       foundPlacemark.image1 = placemark.image1
       foundPlacemark.image2 = placemark.image2
-      foundPlacemark.visited = placemark.visited
+      foundPlacemark.checkbox_visited = placemark.checkbox_visited
       foundPlacemark.lat = placemark.lat
       foundPlacemark.lng = placemark.lng
       foundPlacemark.zoom = placemark.zoom

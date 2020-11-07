@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_placemark.*
@@ -36,9 +38,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
   //TODO:4 Define page change callback here
   private var imagePageChangeCallback = object : OnPageChangeCallback() {
     override fun onPageSelected(position: Int) {
-      Toast.makeText(this@PlacemarkActivity,
-        "Selected position: $position",
-        Toast.LENGTH_SHORT).show()
+      Toast.makeText(this@PlacemarkActivity, "Selected position: $position", Toast.LENGTH_SHORT).show()
     }
   }
 
@@ -47,6 +47,7 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
     setContentView(R.layout.activity_placemark)
     toolbarAdd.title = title
     setSupportActionBar(toolbarAdd)
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
     info("Placemark Activity started..")
 
     app = application as MainApp
@@ -77,10 +78,10 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
       placemark = intent.extras?.getParcelable<PlacemarkModel>("placemark_edit")!!
       placemarkTitle.setText(placemark.title)
       description.setText(placemark.description)
-/**
+      /**
       placemarkImage1.setImageBitmap(readImageFromPath(this, placemark.image1))
       if (placemark.image1 != null) { chooseImage.setText(R.string.change_placemark_image) }
-*/
+       */
       btnAdd.setText(R.string.save_placemark)
     }
 
@@ -156,6 +157,24 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
       }
     }
   }
+
+
+  fun onCheckboxClicked(view: View) {
+    if (view is CheckBox) {
+      val checked: Boolean = view.isChecked
+
+      when (view.id) {
+        R.id.checkbox_visited -> {
+          if (checked) {
+            placemark.checkbox_visited = true
+          }
+        }
+      }
+    }
+  }
+
+
+
 
   override fun onDestroy() {
     super.onDestroy()

@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_landing.*
-import org.wit.placemark.main.MainApp
 
 
 class SignupActivity : AppCompatActivity() {
@@ -104,7 +103,7 @@ class SignupActivity : AppCompatActivity() {
             val password = password.text.toString()
 
             Toast.makeText(this,"Login Success",Toast.LENGTH_SHORT).show()
-            startActivity<PlacemarkListActivity>()
+            startActivity<LoginActivity>()
 
         }
     }

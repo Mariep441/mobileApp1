@@ -15,6 +15,7 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import org.wit.placemark.R
 import org.wit.placemark.main.MainApp
+import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.models.UserModel
 
 /**
@@ -91,8 +92,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
+
     // Hook Click Event
-    fun performSignUp(v: View) {
+    fun performLogin(v: View) {
         if (validateInput()) {
 
             // Input is valid, here send data to your server
@@ -102,5 +104,4 @@ class LoginActivity : AppCompatActivity() {
             startActivity<PlacemarkListActivity>()
         }
     }
-
 }

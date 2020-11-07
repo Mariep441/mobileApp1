@@ -20,7 +20,7 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
 
   val context: Context
   var placemarks = mutableListOf<PlacemarkModel>()
-  var users = mutableListOf<UserModel>()
+
 
   constructor (context: Context) {
     this.context = context
@@ -52,6 +52,8 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
       foundPlacemark.title = placemark.title
       foundPlacemark.description = placemark.description
       foundPlacemark.image1 = placemark.image1
+      foundPlacemark.image1 = placemark.image1
+      foundPlacemark.checkbox_visited = placemark.checkbox_visited
       foundPlacemark.lat = placemark.lat
       foundPlacemark.lng = placemark.lng
       foundPlacemark.zoom = placemark.zoom
