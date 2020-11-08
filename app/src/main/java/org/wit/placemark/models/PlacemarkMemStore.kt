@@ -1,5 +1,6 @@
 package org.wit.placemark.models
 
+import kotlinx.android.synthetic.main.activity_placemark.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
@@ -12,6 +13,7 @@ internal fun getId(): Long {
 class PlacemarkMemStore : PlacemarkStore, AnkoLogger {
 
   val placemarks = ArrayList<PlacemarkModel>()
+  val users = ArrayList<UserModel>()
 
   override fun findAll(): List<PlacemarkModel> {
     return placemarks
@@ -33,8 +35,8 @@ class PlacemarkMemStore : PlacemarkStore, AnkoLogger {
     if (foundPlacemark != null) {
       foundPlacemark.title = placemark.title
       foundPlacemark.description = placemark.description
-      foundPlacemark.image = placemark.image
-      foundPlacemark.visited = placemark.visited
+      foundPlacemark.images[0] = placemark.images[0]
+      foundPlacemark.checkbox_visited = placemark.checkbox_visited
       foundPlacemark.lat = placemark.lat
       foundPlacemark.lng = placemark.lng
       foundPlacemark.zoom = placemark.zoom
@@ -49,4 +51,6 @@ class PlacemarkMemStore : PlacemarkStore, AnkoLogger {
   fun logAll() {
     placemarks.forEach { info("${it}") }
   }
+
+
 }

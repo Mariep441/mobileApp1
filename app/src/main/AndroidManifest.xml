@@ -12,18 +12,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".activities.PlacemarkMapsActivity"
-            android:label="@string/title_activity_placemark_maps"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activities.PlacemarkActivity" />
-        <activity android:name=".activities.PlacemarkListActivity">
+            android:name=".activities.SplashScreenActivity"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activities.LandingActivity">
+        </activity>
+
+        <activity
+            android:name=".activities.LoginActivity"
+            android:parentActivityName=".activities.LandingActivity" >
+        </activity>
+
+        <activity
+            android:name=".activities.SignupActivity"
+            android:parentActivityName=".activities.LandingActivity" >
+        </activity>
+
+        <activity
+            android:name=".activities.PlacemarkListActivity">
+        </activity>
+
+        <activity
+            android:name=".activities.PlacemarkMapsActivity"
+            android:label="@string/title_activity_placemark_maps"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".activities.PlacemarkActivity"
+            android:parentActivityName=".activities.PlacemarkListActivity" >
+        </activity>
+
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:parentActivityName=".activities.PlacemarkListActivity" >
+        </activity>
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -32,6 +64,7 @@
         <activity
             android:name=".activities.MapActivity"
             android:label="@string/title_activity_map" />
+
     </application>
 
 </manifest>

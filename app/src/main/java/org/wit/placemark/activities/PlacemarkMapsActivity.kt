@@ -46,7 +46,7 @@ class PlacemarkMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListen
         val placemark = app.placemarks.findById(tag)
         currentTitle.text = placemark!!.title
         currentDescription.text = placemark!!.description
-        currentImage.setImageBitmap(readImageFromPath(this, placemark.image))
+        currentImage.setImageBitmap(readImageFromPath(this, placemark.images[0]))
         return true
     }
 

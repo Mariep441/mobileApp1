@@ -21,6 +21,7 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
   val context: Context
   var placemarks = mutableListOf<PlacemarkModel>()
 
+
   constructor (context: Context) {
     this.context = context
     if (exists(context, JSON_FILE)) {
@@ -37,12 +38,12 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
     return foundPlacemark
   }
 
+
   override fun create(placemark: PlacemarkModel) {
     placemark.id = generateRandomId()
     placemarks.add(placemark)
     serialize()
   }
-
 
   override fun update(placemark: PlacemarkModel) {
     val placemarksList = findAll() as ArrayList<PlacemarkModel>
@@ -50,8 +51,8 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
     if (foundPlacemark != null) {
       foundPlacemark.title = placemark.title
       foundPlacemark.description = placemark.description
-      foundPlacemark.image = placemark.image
-      foundPlacemark.visited = placemark.visited
+      foundPlacemark.images[0] = placemark.images[0]
+      foundPlacemark.checkbox_visited = placemark.checkbox_visited
       foundPlacemark.lat = placemark.lat
       foundPlacemark.lng = placemark.lng
       foundPlacemark.zoom = placemark.zoom
@@ -64,7 +65,6 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
     serialize()
   }
 
-
   private fun serialize() {
     val jsonString = gsonBuilder.toJson(placemarks, listType)
     write(context, JSON_FILE, jsonString)
@@ -74,4 +74,5 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
     val jsonString = read(context, JSON_FILE)
     placemarks = Gson().fromJson(jsonString, listType)
   }
+
 }
