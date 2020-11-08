@@ -10,11 +10,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_landing.*
+import kotlinx.android.synthetic.main.activity_placemark.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import org.wit.placemark.R
 import org.wit.placemark.main.MainApp
+import org.wit.placemark.models.Location
 import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.models.UserModel
 
@@ -29,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var email: EditText
     lateinit var  password: EditText
     val MIN_PASSWORD_LENGTH = 6
+    val USER_REQUEST = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,8 @@ class LoginActivity : AppCompatActivity() {
         toolbar.title = title
         setSupportActionBar(toolbar)
         viewInitializations()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -92,7 +97,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
     // Hook Click Event
     fun performLogin(v: View) {
         if (validateInput()) {
@@ -104,4 +108,5 @@ class LoginActivity : AppCompatActivity() {
             startActivity<PlacemarkListActivity>()
         }
     }
+
 }

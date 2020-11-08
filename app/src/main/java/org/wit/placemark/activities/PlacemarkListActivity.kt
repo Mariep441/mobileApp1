@@ -12,6 +12,7 @@ import org.jetbrains.anko.startActivityForResult
 import org.wit.placemark.R
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
+import kotlin.system.exitProcess
 
 class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
 
@@ -49,6 +50,7 @@ class PlacemarkListActivity : AppCompatActivity(), PlacemarkListener {
       R.id.item_add -> startActivityForResult<PlacemarkActivity>(200)
       R.id.item_map -> startActivity<PlacemarkMapsActivity>()
       R.id.item_settings -> startActivity<SettingsActivity>()
+      R.id.item_logout -> finishAffinity()
     }
     return super.onOptionsItemSelected(item)
   }

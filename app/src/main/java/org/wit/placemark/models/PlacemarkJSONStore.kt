@@ -51,8 +51,7 @@ class PlacemarkJSONStore : PlacemarkStore, AnkoLogger {
     if (foundPlacemark != null) {
       foundPlacemark.title = placemark.title
       foundPlacemark.description = placemark.description
-      foundPlacemark.image1 = placemark.image1
-      foundPlacemark.image1 = placemark.image1
+      foundPlacemark.images[0] = placemark.images[0]
       foundPlacemark.checkbox_visited = placemark.checkbox_visited
       foundPlacemark.lat = placemark.lat
       foundPlacemark.lng = placemark.lng

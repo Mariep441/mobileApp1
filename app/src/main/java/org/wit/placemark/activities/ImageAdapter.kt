@@ -14,4 +14,7 @@ class ImageAdapter(activity: AppCompatActivity, private val itemsCount: Int) :
   override fun createFragment(position: Int): Fragment {
     return ImageFragment.getInstance(position)
   }
+
+
+
 }
