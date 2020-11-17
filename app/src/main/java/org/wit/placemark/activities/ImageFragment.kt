@@ -45,7 +45,7 @@ class ImageFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val position = requireArguments().getInt(ARG_POSITION)
     val imagePhotosArray = placemark.images
-    val imageFilePath = getString(R.string.image_path)
+    val imageFilePath = placemark.images[0]
     val imageNamesArray = requireContext().resources.getStringArray(R.array.image_names)
     setImageFromAssetsFile(requireContext(), imageFilePath)
     imageName.text = imageNamesArray[position]
